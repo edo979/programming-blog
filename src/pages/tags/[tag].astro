@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import BlogPost from '../../layouts/BlogPost.astro'
+import type { map } from 'astro/zod'
+
+type Props = {
+  posts: CollectionEntry<'blog'>[]
+}
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob('../../content/blog/*.md*')
+  const slugs = [...new Set(allPosts.map((post) => post.frontmatter.title))]
+
+  return [{ params: { tag: 'jah' }, props: { posts: slugs } }]
+}
+
+const { tag } = Astro.params
+const { posts } = Astro.props
+console.log(posts)
+---
+
+<h1>{tag}</h1>
