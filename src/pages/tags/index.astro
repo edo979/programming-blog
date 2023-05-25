@@ -1,5 +1,11 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from '../../layouts/BlogPost.astro'
+
+const allPosts = await getCollection('blog')
+const tags: string[] = [
+  ...new Set(allPosts.map((post) => post.data.tags).flat()),
+]
 ---
 
 <Layout
@@ -8,9 +14,14 @@ import Layout from '../../layouts/BlogPost.astro'
   pubDate={new Date('2023-5-25')}
   updatedDate={new Date('2023-5-25')}
   heroImage="/placeholder-about.jpg"
+  tags={[]}
 >
   <p>
     Svi tekstovi su označeni tagovima radi lakšeg pronalaženja traženog
     sadržaja.
   </p>
+  <p>Tagovi:</p>
+  <ul>
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
 </Layout>

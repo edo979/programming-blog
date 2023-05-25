@@ -1,22 +1,33 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import BlogPost from '../../layouts/BlogPost.astro'
-import type { map } from 'astro/zod'
+import { CollectionEntry, getCollection } from 'astro:content'
 
-type Props = {
+export interface Props {
   posts: CollectionEntry<'blog'>[]
 }
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob('../../content/blog/*.md*')
-  const slugs = [...new Set(allPosts.map((post) => post.frontmatter.title))]
+  const allPosts = await getCollection('blog')
+  const tags: string[] = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ]
 
-  return [{ params: { tag: 'jah' }, props: { posts: slugs } }]
+  return tags.map((tag) => {
+    const filteredPostByTag = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    )
+
+    return {
+      params: { tag },
+      props: { posts: filteredPostByTag },
+    }
+  })
 }
 
 const { tag } = Astro.params
 const { posts } = Astro.props
-console.log(posts)
 ---
 
 <h1>{tag}</h1>
+<ul>
+  {posts.map((post) => <li>{post.data.title}</li>)}
+</ul>
