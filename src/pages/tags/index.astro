@@ -22,6 +22,14 @@ const tags: string[] = [
   </p>
   <p>Tagovi:</p>
   <ul>
-    {tags.map((tag) => <li>{tag}</li>)}
+    {
+      tags
+        .sort((a, b) => a.localeCompare(b))
+        .map((tag) => (
+          <li>
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </li>
+        ))
+    }
   </ul>
 </Layout>
