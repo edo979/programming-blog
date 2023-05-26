@@ -63,7 +63,11 @@ const { posts } = Astro.props
         {
           posts
             .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-            .map((post) => <li>{post.data.title}</li>)
+            .map((post) => (
+              <li>
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </li>
+            ))
         }
       </ul>
     </main>
