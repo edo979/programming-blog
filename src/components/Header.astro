@@ -1,10 +1,16 @@
 ---
 import HeaderLink from './HeaderLink.astro'
 import { SITE_TITLE } from '../consts'
+
+const navLinks = [
+  { name: 'Blog', href: '/blog' },
+  { name: 'O meni', href: '/about' },
+  { name: 'Tagovi', href: '/tags' },
+]
 ---
 
 <header>
-  <div class="navbar bg-base-100">
+  <div class="navbar bg-base-300">
     <div class="navbar-start w-full md:w-auto">
       <div class="dropdown md:hidden">
         <label tabindex="0" class="btn btn-ghost btn-circle">
@@ -23,28 +29,33 @@ import { SITE_TITLE } from '../consts'
         </label>
         <ul
           tabindex="0"
-          class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52"
         >
-          <li><a>Homepage</a></li>
-          <li><a>Portfolio</a></li>
-          <li><a>About</a></li>
+          {
+            navLinks.map((link) => (
+              <li>
+                <HeaderLink href={link.href} class="btn btn-ghost">
+                  {link.name}
+                </HeaderLink>
+              </li>
+            ))
+          }
         </ul>
       </div>
-      <a href="/" class="btn btn-ghost mx-auto normal-case text-xl md:m-0"
-        ><h1>{SITE_TITLE}</h1></a
+      <a
+        href="/"
+        class="btn btn-ghost mx-auto normal-case text-xl md:m-0 lg:text-xl"
+        ><h1>🏠 {SITE_TITLE}</h1></a
       >
     </div>
     <nav class="navbar-center mx-auto hidden md:flex">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
-      <HeaderLink href="/tags">Tagovi</HeaderLink>
-      <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
-        Twitter
-      </HeaderLink>
-      <HeaderLink href="https://github.com/withastro/astro" target="_blank">
-        GitHub
-      </HeaderLink>
+      {
+        navLinks.map((link) => (
+          <HeaderLink href={link.href} class="btn btn-ghost lg:text-lg">
+            {link.name}
+          </HeaderLink>
+        ))
+      }
     </nav>
   </div>
 </header>
