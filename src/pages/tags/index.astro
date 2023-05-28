@@ -1,7 +1,5 @@
 ---
 import { getCollection } from 'astro:content'
-import Header from '../../components/Header.astro'
-import Footer from '../../components/Footer.astro'
 import Layout from '../../layouts/MainLayout.astro'
 
 const allPosts = await getCollection('blog')
@@ -14,26 +12,20 @@ const tags: string[] = [
   title="Tagovi"
   description="Radi lakšeg pronalska sadržaja tekstovi su označeni tagovima."
 >
-  <Header />
-
-  <main>
-    <p>
-      Svi tekstovi su označeni tagovima radi lakšeg pronalaženja traženog
-      sadržaja.
-    </p>
-    <p>Tagovi:</p>
-    <ul class="flex gap-2">
-      {
-        tags
-          .sort((a, b) => a.localeCompare(b))
-          .map((tag) => (
-            <li>
-              <a href={`/tags/${tag}`}>{tag}</a>
-            </li>
-          ))
-      }
-    </ul>
-  </main>
-
-  <Footer />
+  <p>
+    Svi tekstovi su označeni tagovima radi lakšeg pronalaženja traženog
+    sadržaja.
+  </p>
+  <p>Tagovi:</p>
+  <ul class="flex gap-2">
+    {
+      tags
+        .sort((a, b) => a.localeCompare(b))
+        .map((tag) => (
+          <li>
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </li>
+        ))
+    }
+  </ul>
 </Layout>

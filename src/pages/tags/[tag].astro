@@ -1,8 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content'
 import Layout from '../../layouts/MainLayout.astro'
-import Header from '../../components/Header.astro'
-import Footer from '../../components/Footer.astro'
 
 export interface Props {
   posts: CollectionEntry<'blog'>[]
@@ -34,20 +32,16 @@ const { posts } = Astro.props
   title={`Tag: ${tag}`}
   description={`Tekstovi koji su označeni tagom ${tag}`}
 >
-  <Header />
-  <main>
-    <h1>{tag}</h1>
-    <ul>
-      {
-        posts
-          .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-          .map((post) => (
-            <li>
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-            </li>
-          ))
-      }
-    </ul>
-  </main>
-  <Footer />
+  <h1>{tag}</h1>
+  <ul>
+    {
+      posts
+        .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+        .map((post) => (
+          <li>
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </li>
+        ))
+    }
+  </ul>
 </Layout>
