@@ -4,17 +4,47 @@ import { SITE_TITLE } from '../consts'
 ---
 
 <header>
-  <h1>{SITE_TITLE}</h1>
-  <nav>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/blog">Blog</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="/tags">Tagovi</HeaderLink>
-    <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
-      Twitter
-    </HeaderLink>
-    <HeaderLink href="https://github.com/withastro/astro" target="_blank">
-      GitHub
-    </HeaderLink>
-  </nav>
+  <div class="navbar bg-base-100">
+    <div class="navbar-start w-full md:w-auto">
+      <div class="dropdown md:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-circle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h7"></path></svg
+          >
+        </label>
+        <ul
+          tabindex="0"
+          class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li><a>Homepage</a></li>
+          <li><a>Portfolio</a></li>
+          <li><a>About</a></li>
+        </ul>
+      </div>
+      <a href="/" class="btn btn-ghost mx-auto normal-case text-xl md:m-0"
+        ><h1>{SITE_TITLE}</h1></a
+      >
+    </div>
+    <nav class="navbar-center mx-auto hidden md:flex">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="/tags">Tagovi</HeaderLink>
+      <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
+        Twitter
+      </HeaderLink>
+      <HeaderLink href="https://github.com/withastro/astro" target="_blank">
+        GitHub
+      </HeaderLink>
+    </nav>
+  </div>
 </header>
