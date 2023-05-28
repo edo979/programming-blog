@@ -17,11 +17,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props
   </head>
   <body>
     <slot name="header" />
-
-    <main>
-      <slot />
-    </main>
-
+    <slot />
     <slot name="footer" />
   </body>
 </html>

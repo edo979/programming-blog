@@ -11,9 +11,9 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <Layout>
-  <Header slot="header" />
+  <Header />
 
-  <section>
+  <main>
     <ul>
       {
         posts.map((post) => (
@@ -24,7 +24,7 @@ const posts = (await getCollection('blog')).sort(
         ))
       }
     </ul>
-  </section>
+  </main>
 
-  <Footer slot="footer" />
+  <Footer />
 </Layout>
