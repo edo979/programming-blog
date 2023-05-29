@@ -1,5 +1,27 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from '../layouts/MainLayout.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+
+const allPosts = (await getCollection('blog')).sort(
+  (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+)
+
+const tags: string[] = [
+  ...new Set(allPosts.map((post) => post.data.tags).flat()),
+]
+
+const tagFirstPosts = tags.map(
+  (tag) => allPosts.filter((post) => post.data.tags.includes(tag))[0]
+)
+
+const getLatestPosts = (numberOfPosts = 3) => {
+  if (allPosts.length > 3) {
+    return allPosts.slice(0, numberOfPosts)
+  } else {
+    return allPosts
+  }
+}
 ---
 
 <Layout>
@@ -11,9 +33,13 @@ import Layout from '../layouts/MainLayout.astro'
         <div class="prose">
           <h1>Programiranje internet stranica</h1>
           <p class="lead">
-            Dobro došli na stranicu gdje možete naučiti praviti internet
-            stranice. Ova stranica namjenjena je početnicima, osobama koje prave
-            prve korake u svijetu programiranja.
+            Želiti naučiti programirati i tek počinjete sa učenjem - na pravom
+            ste mjestu. Ova stranica namjenjena je početnicima i osobama koje
+            prave prve korake u svijetu programiranja.
+          </p>
+          <p>
+            Ovdje možete pronaći sadržaj o osnovnim web tehnologijama kao što
+            su: HTML, CSS i javaScript.
           </p>
           <div class="flex flex-row">
             <img src="/forPage/html-5.png" alt="" />
@@ -36,14 +62,33 @@ import Layout from '../layouts/MainLayout.astro'
   </header>
 
   <section class="prose mx-auto">
-    <h2>Lorem ipsum dolor sit amet.</h2>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, officiis
-      rem laboriosam ab quis praesentium debitis, ad quam ullam facilis illo
-      delectus excepturi consequuntur ducimus, facere placeat. Obcaecati
-      voluptates nesciunt molestiae illum, quidem modi non? Cum, eligendi non!
-      Dignissimos, maxime nam quisquam delectus, esse necessitatibus facilis,
-      provident excepturi ratione in unde sunt aliquam dolorum nisi.
-    </p>
+    <h2>Zadnji dodani tekstovi:</h2>
+    {
+      getLatestPosts().map((post) => (
+        <article>
+          <header>
+            <h3>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </h3>
+            <time>
+              <FormattedDate date={post.data.pubDate} />
+            </time>
+            <img src={post.data.heroImage} alt="slika za članak" />
+          </header>
+          <main>
+            <p>{post.data.description}</p>
+          </main>
+          <footer>
+            <ul class="m-0 p-0 list-none flex">
+              {post.data.tags.map((tag) => (
+                <li>
+                  <span class="badge badge-secondary">{tag}</span>
+                </li>
+              ))}
+            </ul>
+          </footer>
+        </article>
+      ))
+    }
   </section>
 </Layout>
