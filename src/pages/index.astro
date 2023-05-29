@@ -3,21 +3,28 @@ import Layout from '../layouts/MainLayout.astro'
 ---
 
 <Layout>
-  <header slot="beforeMain" class="px-4 container mx-auto">
-    <div class="flex flex-col gap-8 sm:flex-row sm:items-center md:gap-16">
-      <div class="prose">
-        <h1>Programiranje internet stranica</h1>
-        <p class="lead">
-          Dobro došli na stranicu gdje možete naučiti praviti internet stranice.
-          Ova stranica namjenjena je početnicima, osoboma koje prave preve
-          korake u svijetu programiranja.
-        </p>
-      </div>
-      <div class="min-w-[300px]">
-        <picture>
-          <source srcset="/placeholder-social.jpg" media="(min-width: 600px)" />
-          <img src="/placeholder-hero.jpg" alt="MDN" />
-        </picture>
+  <header slot="beforeMain" class="w-full bg-base-200 shadow">
+    <div class="container mx-auto mb-16 py-16 px-4">
+      <div class="flex flex-col gap-8 sm:flex-row sm:items-center md:gap-16">
+        <div class="prose">
+          <h1>Programiranje internet stranica</h1>
+          <p class="lead">
+            Dobro došli na stranicu gdje možete naučiti praviti internet
+            stranice. Ova stranica namjenjena je početnicima, osobama koje prave
+            prve korake u svijetu programiranja.
+          </p>
+          <div class="flex flex-row">
+            <img src="/forPage/html-5.png" alt="" />
+            <img src="/forPage/css.png" alt="" />
+            <img src="/forPage/java-script.png" alt="" />
+          </div>
+        </div>
+        <div class="min-w-[300px]">
+          <picture>
+            <source srcset="/forPage/hero-lg.jpg" media="(min-width: 640px)" />
+            <img src="/forPage/hero-sm.jpg" alt="MDN" />
+          </picture>
+        </div>
       </div>
     </div>
   </header>
