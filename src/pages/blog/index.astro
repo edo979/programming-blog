@@ -4,19 +4,25 @@ import FormattedDate from '../../components/FormattedDate.astro'
 import Layout from '../../layouts/MainLayout.astro'
 
 const posts = (await getCollection('blog')).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 )
 ---
 
 <Layout>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <FormattedDate date={post.data.pubDate} />
-          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="prose mx-auto my-16">
+    <h1>Blog</h1>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.slug}/`}>
+              <h2>{post.data.title}</h2>
+            </a>
+            <FormattedDate date={post.data.pubDate} />
+            <p>{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Layout>
