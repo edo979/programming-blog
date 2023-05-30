@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import { getCollection } from 'astro:content'
 import Layout from '../layouts/MainLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
 import TagsList from '../components/TagsList.astro'
@@ -12,27 +12,19 @@ const allNews = (await getCollection('news')).sort(
   (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 )
 
-const tags: string[] = [
-  ...new Set(allPosts.map((post) => post.data.tags).flat()),
-]
-
-const tagFirstPosts = tags.map(
-  (tag) => allPosts.filter((post) => post.data.tags.includes(tag))[0]
-)
-
-const getLatestPostsFromCollection = (
-  collection: 'blog' | 'news',
-  numberOfPosts = 3
-) => {
-  let posts: CollectionEntry<'blog'>[] | CollectionEntry<'news'>[] = []
-
-  if (collection === 'blog') posts = allPosts
-  if (collection === 'news') posts = allNews
-
-  if (posts.length > 3) {
-    return posts.slice(0, numberOfPosts)
+const getLatestPosts = (numberOfPosts = 3) => {
+  if (allPosts.length > numberOfPosts) {
+    return allPosts.slice(0, numberOfPosts)
   } else {
-    return posts
+    return allPosts
+  }
+}
+
+const getLatestNews = (numberOfPosts = 5) => {
+  if (allNews.length > numberOfPosts) {
+    return allNews.slice(0, numberOfPosts)
+  } else {
+    return allNews
   }
 }
 ---
@@ -77,7 +69,7 @@ const getLatestPostsFromCollection = (
   <section class="prose mx-auto">
     <h2>Zadnji dodani tekstovi:</h2>
     {
-      getLatestPostsFromCollection('blog').map((post) => (
+      getLatestPosts().map((post) => (
         <article>
           <header>
             <h3>
@@ -100,15 +92,11 @@ const getLatestPostsFromCollection = (
   </section>
   <aside
     slot="asideMain"
-    class="p-8 max-w-[300px] border border-primary rounded shadow bg-base-200"
+    class="p-8 w-full border border-primary rounded shadow bg-base-200 lg:max-w-[300px]"
   >
     <h2 class="text-xl font-bold">Vijesti:</h2>
     <ul class="list-disc p-4">
-      {
-        getLatestPostsFromCollection('news', 5).map((post) => (
-          <li>{post.data.title}</li>
-        ))
-      }
+      {getLatestNews().map((post) => <li>{post.data.title}</li>)}
     </ul>
   </aside>
 </Layout>
