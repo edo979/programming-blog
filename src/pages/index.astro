@@ -93,7 +93,14 @@ function getLatestPostFromCollection<T>(
     <ul class="list-disc p-4">
       {
         getLatestPostFromCollection(allNews, 5).map((post) => (
-          <li>{post.data.title}</li>
+          <li>
+            <a href={`/vijesti/${post.slug}`} class="hover:underline">
+              {post.data.title}
+            </a>
+            <p class="text-xs">
+              <FormattedDate date={post.data.pubDate} />
+            </p>
+          </li>
         ))
       }
     </ul>
