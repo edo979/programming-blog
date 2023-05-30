@@ -1,0 +1,18 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content'
+import Layout from '../../layouts/MainLayout.astro'
+
+type News = CollectionEntry<'news'>
+
+const news: News[] = (await getCollection('news')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+---
+
+<Layout>
+  <h1>Vijesti</h1>
+
+  <ul>
+    {news.map((post) => <li>{post.data.title}</li>)}
+  </ul>
+</Layout>
