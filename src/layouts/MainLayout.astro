@@ -25,9 +25,14 @@ const {
   <body>
     <Header />
     <slot name="beforeMain" />
-    <main class="container mx-auto px-5">
-      <slot />
-    </main>
+    <div
+      class="container px-5 mx-auto flex flex-col-reverse gap-8 justify-center items-start lg:flex-row"
+    >
+      <main>
+        <slot />
+      </main>
+      <slot name="asideMain" />
+    </div>
     <slot name="afterMain" />
     <Footer />
   </body>
