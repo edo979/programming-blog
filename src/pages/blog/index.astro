@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import FormattedDate from '../../components/FormattedDate.astro'
 import Layout from '../../layouts/MainLayout.astro'
+import TagsList from '../../components/TagsList.astro'
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -20,6 +21,7 @@ const posts = (await getCollection('blog')).sort(
             </a>
             <FormattedDate date={post.data.pubDate} />
             <p>{post.data.description}</p>
+            <TagsList tags={post.data.tags} />
           </li>
         ))
       }

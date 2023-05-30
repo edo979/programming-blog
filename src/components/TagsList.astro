@@ -1,0 +1,17 @@
+---
+export interface Props {
+  tags: string[]
+}
+
+const { tags } = Astro.props
+---
+
+<ul class="m-0 p-0 list-none flex">
+  {
+    tags.map((tag) => (
+      <li>
+        <span class="badge badge-secondary">{tag}</span>
+      </li>
+    ))
+  }
+</ul>

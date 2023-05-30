@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import Layout from '../layouts/MainLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
+import TagsList from '../components/TagsList.astro'
 
 const allPosts = (await getCollection('blog')).sort(
   (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -79,13 +80,7 @@ const getLatestPosts = (numberOfPosts = 3) => {
             <p>{post.data.description}</p>
           </main>
           <footer>
-            <ul class="m-0 p-0 list-none flex">
-              {post.data.tags.map((tag) => (
-                <li>
-                  <span class="badge badge-secondary">{tag}</span>
-                </li>
-              ))}
-            </ul>
+            <TagsList tags={post.data.tags} />
           </footer>
         </article>
       ))
