@@ -32,16 +32,19 @@ const { posts } = Astro.props
   title={`Tag: ${tag}`}
   description={`Tekstovi koji su označeni tagom ${tag}`}
 >
-  <h1>{tag}</h1>
-  <ul>
-    {
-      posts
-        .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-        .map((post) => (
-          <li>
-            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-          </li>
-        ))
-    }
-  </ul>
+  <div class="mx-auto my-16 prose">
+    <h1 class="capitalize">🏷 {tag}</h1>
+    <p class="lead">Ispod su svi tekstovi koji su označeni tagom {tag}:</p>
+    <ul>
+      {
+        posts
+          .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+          .map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </li>
+          ))
+      }
+    </ul>
+  </div>
 </Layout>
