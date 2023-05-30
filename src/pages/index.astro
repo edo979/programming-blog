@@ -12,19 +12,14 @@ const allNews = (await getCollection('news')).sort(
   (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 )
 
-const getLatestPosts = (numberOfPosts = 3) => {
-  if (allPosts.length > numberOfPosts) {
-    return allPosts.slice(0, numberOfPosts)
+function getLatestPostFromCollection<T>(
+  collection: T[],
+  numberOfPosts: number
+) {
+  if (collection.length > numberOfPosts) {
+    return collection.slice(0, numberOfPosts)
   } else {
-    return allPosts
-  }
-}
-
-const getLatestNews = (numberOfPosts = 5) => {
-  if (allNews.length > numberOfPosts) {
-    return allNews.slice(0, numberOfPosts)
-  } else {
-    return allNews
+    return collection
   }
 }
 ---
@@ -69,7 +64,7 @@ const getLatestNews = (numberOfPosts = 5) => {
   <section class="prose mx-auto">
     <h2>Zadnji dodani tekstovi:</h2>
     {
-      getLatestPosts().map((post) => (
+      getLatestPostFromCollection(allPosts, 3).map((post) => (
         <article>
           <header>
             <h3>
@@ -96,7 +91,11 @@ const getLatestNews = (numberOfPosts = 5) => {
   >
     <h2 class="text-xl font-bold">Vijesti:</h2>
     <ul class="list-disc p-4">
-      {getLatestNews().map((post) => <li>{post.data.title}</li>)}
+      {
+        getLatestPostFromCollection(allNews, 5).map((post) => (
+          <li>{post.data.title}</li>
+        ))
+      }
     </ul>
   </aside>
 </Layout>
