@@ -1,10 +1,8 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import { getCollection } from 'astro:content'
 import Layout from '../../layouts/MainLayout.astro'
 
-type News = CollectionEntry<'news'>
-
-const news: News[] = (await getCollection('news')).sort(
+const news = (await getCollection('news')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 )
 ---
@@ -13,6 +11,12 @@ const news: News[] = (await getCollection('news')).sort(
   <h1>Vijesti</h1>
 
   <ul>
-    {news.map((post) => <li>{post.data.title}</li>)}
+    {
+      news.map((post) => (
+        <li>
+          <a href={`/vijesti/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
   </ul>
 </Layout>
