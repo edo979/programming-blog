@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '../../layouts/MainLayout.astro'
+import FormattedDate from '../../components/FormattedDate.astro'
 
 const news = (await getCollection('news')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -8,15 +9,18 @@ const news = (await getCollection('news')).sort(
 ---
 
 <Layout>
-  <h1>Vijesti</h1>
+  <div class="mx-auto my-16 prose">
+    <h1>Vijesti 📢</h1>
 
-  <ul>
-    {
-      news.map((post) => (
-        <li>
-          <a href={`/vijesti/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+    <ul>
+      {
+        news.map((post) => (
+          <li class="text-lg">
+            <FormattedDate date={post.data.pubDate} />
+            <a href={`/vijesti/${post.slug}`}>{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Layout>
