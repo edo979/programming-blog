@@ -9,7 +9,10 @@ const posts = (await getCollection('blog')).sort(
 )
 ---
 
-<Layout>
+<Layout
+  title="Blog"
+  description="Tekstovi o HTML, CSS, javaScript programskom jeziku. Lekcije i primjeri kako napraviti internet stranicu ili dio internet stranice."
+>
   <div class="prose mx-auto my-16">
     <h1>Blog</h1>
     <ul>
