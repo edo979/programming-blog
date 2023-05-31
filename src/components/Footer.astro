@@ -2,6 +2,15 @@
 const today = new Date()
 ---
 
-<footer>
-  &copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+<footer class="w-full py-16 px-4 bg-secondary">
+  <div
+    class="container mx-auto flex flex-col items-center text-secondary-content"
+  >
+    <img src="/forPage/logo.png" alt="logo" />
+    <p class="mt-4"><b>Programiranje internet stranica</b></p>
+    <p><b>Stranica posvećena učenju web tehnologija</b></p>
+    <p class="mt-4">
+      &copy; {today.getFullYear()} Programiranje. Sva prava pridržana.
+    </p>
+  </div>
 </footer>
