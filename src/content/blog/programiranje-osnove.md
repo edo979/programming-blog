@@ -19,6 +19,8 @@ Ovi programski jezici koriste program koji se zove kompajler. Kompajler prevodi 
 
 Programi koji za prevođenje linija programskog koda u mašinski jezik koriste interpreter nazivaju se interpreterski programski jezici. Interpreter čita linije programskog koda i direktno ih prevodi u mašinski jezik tokom izvršavanja programa na računaru. Neki od interpreterskih programskih jezika su: python, javaScript, Ruby. Ovi programi se jednostavno uče ali su zato malo sporiji prilikom izvršavanja na računaru u odnosu na kompajlerske jezike.
 
+## Kompajler VS Interpreter
+
 Glavna razlika između ovih programskih jezika je u vremenu kada se vrši prevođenje. Kompajler prevodi jezik prije izvršenja programa u računaru i može otkriti grešku prije nego program počne sa izvršavanjem u računaru.
 
 Zamislite da razgovarate sa osobom koja govori nekim stranim jezikom, a prevodilac čeka da osoba završi sa govorom pa onda prevede cijeli govor. Tako radi kompajler.

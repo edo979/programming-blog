@@ -1,6 +1,6 @@
 ---
 title: Uvod u programiranje
-description: Programiranje je pravljenje programa za računar. Računar može riješiti zadatak samo ako ima tačna uputstva za rješavanje. Ova uputstva u obliko računarskog programa pravi programer pomoću programskog jezika. Program je znači uputstvo za riješavanje zadataka.
+description: Programiranje je pravljenje programa za računar. Računar može riješiti zadatak samo ako ima tačna uputstva za rješavanje. Ova uputstva u obliku računarskog programa piše programer pomoću programskog jezika. Program je znači uputstvo za riješavanje zadataka.
 pubDate: '06.02.2023'
 tags: ['programiranje']
 heroImage: '/forPage/programming.jpg'
