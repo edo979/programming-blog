@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content'
 import Layout from '../../layouts/MainLayout.astro'
+import FormattedDate from '../../components/FormattedDate.astro'
 
 export interface Props {
   posts: CollectionEntry<'blog'>[]
@@ -41,6 +42,7 @@ const { posts } = Astro.props
           .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
           .map((post) => (
             <li>
+              <FormattedDate date={post.data.pubDate} />
               <a href={`/blog/${post.slug}`}>{post.data.title}</a>
             </li>
           ))

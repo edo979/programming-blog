@@ -3,7 +3,7 @@ title: 'Programiranje osnove'
 description: 'Programski jezici omogućavaju komunikaciju programera sa računarom. Računar može izvršiti program i rješiti zadatak samo ako ima niz tačnih i preciznih uputstava. Ta uputstva napisana u programskom jeziku nazivamo program.'
 tags: ['programiranje']
 heroImage: '/forPage/programming.jpg'
-pubDate: '06.02.2023.'
+pubDate: '06.03.2023.'
 ---
 
 Programski jezici omogućavaju komunikaciju sa računarom. Računari se koriste za rješavanje raznih zadataka, a pomoću programskih jezika možemo računaru objasniti kako riješiti zadatak. Računari danas ne mogu riješiti svaki zadatak jer možda niko nije napravio program za rješavanje tog zadatka. Računari razumiju samo mašinski jezik pa je potrebno svaki programski jezik prevesti u mašinski jezik. Mašinski jezik razumiju samo računari, a današnji programski jezici slični su engleskom jeziku. Računar prevodi programske jezike u mašinski jezik pa po načinu prevođenja razlikujemo dvije vrste prevođenja:
